@@ -1,0 +1,364 @@
+# 基礎情報演習1A 第三回
+
+## 3-1
+
+### プログラム
+
+```
+#include <stdio.h>
+#include "PLIB.h"
+
+typedef unsigned int P32;
+typedef short int I16;
+typedef unsigned char P8;
+
+int main(void){
+  int i1,i2,i3,a1,*a2;
+  float f1,b1,*b2;
+  double f2,d1,*d2;
+  char c1,c2,ch1[10] = "abcdefgh",ch2[] = "abcdefgh";
+  P32 pp;
+  I16 aa;
+  P8 ch3;
+
+  printf("/*** P3-1 (sizeof,typedef,pointer ) ***\n");
+  
+  i1 = -4;
+  printf("i1=");
+  print_bitposition(i1);
+  printf("i2=");
+  i2 = 255;
+  print_bitposition(i2);
+  i3 = 0x3f8000f1;
+  printf("i3=");
+  print_bitposition(i3);
+
+  f1 = 1.75f;
+  f2 = 1.5;
+  printf("\nf1=%f,f2=%f\n",f1,f2);
+  c1 = 'A';
+  c2 = -4;
+  ch3 = 200;
+  printf("c1 = %c(%02d),c2 = %d,ch3 = %d\n",c1,c1,c2,ch3);
+  
+  pp = 20000 * 50000;
+  aa = 30000;
+  printf("pp = %d(%08x) aa = %d(%04x)\n",pp,pp,aa,aa);
+  printf("sizeof(int)=%d,sizeof(short)=%d,sizeof(I16)=%d,sizeof(P8)=%d\n",sizeof(int),sizeof(short),sizeof(I16),sizeof(P8));
+  printf("sizeof(float)=%d,sizeof(double)=%d\n",sizeof(float),sizeof(double));
+  printf("sizeof(ch1)=%d sizeof(ch2) = %d\n\n",sizeof(ch1),sizeof(ch2));
+
+  a1 = 20;
+  a2 = &a1;
+
+  printf("a1=%d,a2=%p,*a2=%d\n",a1,a2,*a2);
+
+  b1 = 12.3f;
+  b2 = &b1;
+  printf("b1=%f,b2=%p,*b2=%f\n",b1,b2,*b2);
+  d1 = 45.6;
+  d2 = &d1;
+  printf("d1=%f,d2=%p,d2=%f\n",d1,d2,*d2);
+
+  printf("ch2=%p ch2=%s",ch2,ch2);
+  printf("\n*/\n");
+}
+```
+
+### 出力
+
+```
+/*** P3-1 (sizeof,typedef,pointer ) ***
+i1=11111111111111111111111111111100
+i2=00000000000000000000000011111111
+i3=00111111100000000000000011110001
+
+f1=1.750000,f2=1.500000
+c1 = A(65),c2 = -4,ch3 = 200
+pp = 1000000000(3b9aca00) aa = 30000(7530)
+sizeof(int)=4,sizeof(short)=2,sizeof(I16)=2,sizeof(P8)=1
+sizeof(float)=4,sizeof(double)=8
+sizeof(ch1)=10 sizeof(ch2) = 9
+
+a1=20,a2=000000000066FE0C,*a2=20
+b1=12.300000,b2=000000000066FE08,*b2=12.300000
+d1=45.600000,d2=000000000066FE00,d2=45.600000
+ch2=000000000066FDE0 ch2=abcdefgh
+*/
+```
+
+### 解説
+
+省略する．毎度変更されるポインタの部分をいかにも他のものと同じように問うのはいかがなものかと．
+
+
+## 3-2
+
+### プログラム
+
+```
+#include <stdio.h>
+#include <string.h>
+
+int main(void){
+  struct kozo1 {
+    int a;
+    float b;
+    char name[16];
+  };
+  struct kozo1 g1,g,*p;
+  typedef struct {
+    int a;
+    double b;
+    char name[16];
+  } kozo2;
+  kozo2 g2,*p2;
+
+  printf("/*** P3-2 *****\n");
+  printf("sizeof(struct kozo1)=%d,&g1=%p,&g1.a=%p\n&1.b=%p,&g1.name=%p\n",sizeof(struct  kozo1),&g1,&g1.a,&g1.b,&g1.name);
+  printf("sizeof(kozo2)=%d,&g2=%p,&g2.a=%p\n&g2.b=%p,&g2.name=%p\n\n",sizeof(kozo2),&g2,&g2.a,&g2.b,&g2.name);
+
+  g2.a = 10;
+  g2.b = 12.3;
+  strcpy(g2.name,"shibaura");
+  printf("g2.a=%d,g2.b=%f,g2.name=%s\n\n",g2.a,g2.b,g2.name);
+  p2 = &g2;
+  printf("p2->a=%d,p2->b=%f,p2->name=%s\n",p2->a,p2->b,p2->name);
+  g1.a = 90;
+  g1.b = (float)99.9;
+  strcpy(g1.name,"Ohmiya");
+  printf("g1.a=%d,g1.b=%f,g1.name=%s\n\n",g1.a,g1.b,g1.name);
+  
+  g = g1;
+  p = &g;
+  printf("p2->a=%d,p2->b=%f,p2->name=%s\n",p2->a,p2->b,p2->name);
+  printf("g2.a=%d,g2.b=%f,g2.name=%s\n\n",g2.a,g2.b,g2.name);
+  printf("*/\n");
+}
+```
+
+### 出力
+
+```
+/*** P3-2 *****
+sizeof(struct kozo1)=24,&g1=000000000066FE20,&g1.a=000000000066FE20
+&1.b=000000000066FE24,&g1.name=000000000066FE28
+sizeof(kozo2)=32,&g2=000000000066FDE0,&g2.a=000000000066FDE0
+&g2.b=000000000066FDE8,&g2.name=000000000066FDF0
+
+g2.a=10,g2.b=12.300000,g2.name=shibaura
+
+p2->a=10,p2->b=12.300000,p2->name=shibaura
+g1.a=90,g1.b=99.900002,g1.name=Ohmiya
+
+p2->a=10,p2->b=12.300000,p2->name=shibaura
+g2.a=10,g2.b=12.300000,g2.name=shibaura
+
+*/
+```
+
+### 解説
+
+strcpyは解説なしでつかうものではないのでは．
+
+## 3-3
+
+### プログラム
+
+```
+#include <stdio.h>
+#define Ni 3
+#define Nj 4
+static int A[Nj] = {11,12,13,14};
+static int B[Ni][Nj] = {1,2,3,4,11,12,13,14,21,22,23,24};
+
+int main(void){
+  int i,j,C[Nj];
+
+  printf("/** P3-3  **\n");
+
+  printf("step1:\n");
+  for(j=0;j<Nj;j++) printf("A[%d]=%2d ",j,A[j]);
+  
+  printf("\n\nstep2: (アドレスのつながりを確認しよう)\n");
+  printf("A=%p",A);
+  for(j=0;j<Nj;j++) printf("&A[%d]=%p ",j,&A[j]);
+  
+  printf("\nstep3:\n");
+  for(i=0;i<Ni;i++){
+    for(j=0;j<Nj;j++) printf("B[%d][%d]=%2d ",i,j,B[i][j]);
+    printf("\n");
+  }
+  
+  printf("\nstep4: (アドレスのつながりを確認しよう)");
+  for(i=0;i<Ni;i++){
+    for(j=0;j<Nj;j++) printf("&B[%d][%d]=%2d ",i,j,&B[i][j]);
+    printf("\n");
+  }
+
+  for(j=0;j<Nj;j++) C[j]=B[2][j] + 100;
+  for(j=0;j<Nj;j++) printf("C[%d] =%03d",j,C[j]);
+  printf("\n*/\n");
+}
+```
+
+### 出力
+
+```
+/** P3-3  **
+step1:
+A[0]=11 A[1]=12 A[2]=13 A[3]=14 
+
+step2: (アドレスのつながりを確認しよう)
+A=0000000000403020&A[0]=0000000000403020 &A[1]=0000000000403024 &A[2]=0000000000403028 &A[3]=000000000040302C 
+step3:
+B[0][0]= 1 B[0][1]= 2 B[0][2]= 3 B[0][3]= 4 
+B[1][0]=11 B[1][1]=12 B[1][2]=13 B[1][3]=14 
+B[2][0]=21 B[2][1]=22 B[2][2]=23 B[2][3]=24 
+
+step4: (アドレスのつながりを確認しよう)&B[0][0]=4206656 &B[0][1]=4206660 &B[0][2]=4206664 &B[0][3]=4206668 
+&B[1][0]=4206672 &B[1][1]=4206676 &B[1][2]=4206680 &B[1][3]=4206684 
+&B[2][0]=4206688 &B[2][1]=4206692 &B[2][2]=4206696 &B[2][3]=4206700 
+C[0] =121C[1] =122C[2] =123C[3] =124
+*/
+```
+
+### 解説
+
+PDF上のプログラムで，for文で繰り返す文とそうでない文を一行にまとめて書くのは非常にみづらいのでやめてほしい．
+
+## 3-4
+
+### プログラム
+
+```
+#include <stdio.h>
+#define N 6
+
+int a[N] = {1,2,3,4,5,6};
+int b[N] = {19,18,17,16,15,14};
+
+void add(int *p,int *q,int *r){
+  int i;
+  for(i=0;i<N;i++){
+    r[i] = p[i] + q[i];
+  }
+}
+
+int *sub(int *p,int *q){
+  int i;
+  static int wk[N];
+  for(i=0;i<N;i++){
+    wk[i] = p[i] - q[i];
+  }
+  return wk;
+}
+
+int main(void){
+  int i,w[N],*v;
+  printf("/**** P3-4 ***\n");
+  add(a,b,w);
+  printf("a+b=");
+  for(i=0;i<N;i++) printf("w[%d] = %d ",i,w[i]);
+  printf("\n");
+  v = sub(a,b);
+  printf("a-b=");
+  for(i=0;i<N;i++) printf("v[%d] = %d ",i,v[i]);
+
+  printf("\n*/\n");
+}
+```
+
+### 出力
+
+```
+/**** P3-4 ***
+a+b=w[0] = 20 w[1] = 20 w[2] = 20 w[3] = 20 w[4] = 20 w[5] = 20 
+a-b=v[0] = -18 v[1] = -16 v[2] = -14 v[3] = -12 v[4] = -10 v[5] = -8 
+*/
+```
+
+## q-2
+
+### プログラム
+
+```
+#include <stdio.h>
+
+#define QUEEN_ROW 1
+#define QUEEN_COLUMN 2
+
+int ar[6][6] = {{0}};
+
+int check_queen(int row,int column){
+  int i;
+  for(i=0;i<6;i++){
+    if(ar[row][i] == 1 || ar[i][column] == 1) return 0;
+    if(column - (row - i) > -1 && column - (row - i) < 6){
+      if(ar[i][column - (row - i)]==1) return 0;
+    }
+    if(column + (row - i) && column + (row - i) < 6){
+      if(ar[i][column + (row - i)] == 1) return 0;
+    }
+  }
+  return 1;
+}
+
+void print_ban(){
+  int i,j;
+  printf("   1 2 3 4 5 6\n");
+  for(i=0;i<6;i++){
+    printf("%2d",i+1);
+    for(j=0;j<6;j++){
+      printf("%2d",ar[i][j]);
+    }
+    printf("\n");
+  }
+}
+
+int main(void){
+  int row,column;
+  ar[QUEEN_ROW][QUEEN_COLUMN] = 1;
+  print_ban();
+  while(1){
+    printf("Queenのポジションを入力してください:");
+    scanf("%d %d",&row,&column);
+    if(check_queen(row-1,column-1)) { 
+      printf("sucess\n");
+      ar[row-1][column-1] = 1;
+    } else {
+      printf("fail\n");
+    }
+    print_ban();
+  }
+  return 0;
+}
+```
+
+### 出力
+
+```
+   1 2 3 4 5 6                        
+ 1 0 0 0 0 0 0                        
+ 2 0 0 1 0 0 0                        
+ 3 0 0 0 0 0 0                        
+ 4 0 0 0 0 0 0                        
+ 5 0 0 0 0 0 0                        
+ 6 0 0 0 0 0 0                        
+Queenのポジションを入力してください:1 5              
+sucess                                
+   1 2 3 4 5 6                        
+ 1 0 0 0 0 1 0                        
+ 2 0 0 1 0 0 0                        
+ 3 0 0 0 0 0 0                        
+ 4 0 0 0 0 0 0                        
+ 5 0 0 0 0 0 0                        
+ 6 0 0 0 0 0 0                        
+Queenのポジションを入力してください:1 6              
+fail                                  
+```
+
+
+### 解説
+
+前回のプログラムにQueenを表示する関数を追加しただけの形となる．

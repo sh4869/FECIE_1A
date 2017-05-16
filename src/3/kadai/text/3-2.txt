@@ -1,0 +1,15 @@
+/*** P3-2 *****
+sizeof(struct kozo1)=24,&g1=000000000066FE20,&g1.a=000000000066FE20
+&1.b=000000000066FE24,&g1.name=000000000066FE28
+sizeof(kozo2)=32,&g2=000000000066FDE0,&g2.a=000000000066FDE0
+&g2.b=000000000066FDE8,&g2.name=000000000066FDF0
+
+g2.a=10,g2.b=12.300000,g2.name=shibaura
+
+p2->a=10,p2->b=12.300000,p2->name=shibaura
+g1.a=90,g1.b=99.900002,g1.name=Ohmiya
+
+p2->a=10,p2->b=12.300000,p2->name=shibaura
+g2.a=10,g2.b=12.300000,g2.name=shibaura
+
+*/
