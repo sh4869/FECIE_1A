@@ -1,0 +1,14 @@
+/*** P4-4 ***
+sizeof(nm1)=12,sizeof(nm3)=11
+(1) nm1=Shibaura
+strlen(nm1)=8,strlen(nm3)=10
+strlen(nm1)=10,strlen(nm3)=10nm1=abcdefghij
+(3) nm1=Tanaka,nm2=Nagashima,nm3=Yoshida
+strcmp(nm1,nm1)=0 (nm1==nm1)
+strcmp(nm1,nm2)=1 (nm1>nm2)
+strcmp(nm2,nm3)=-1 (nm2<nm3)
+(5) 名をローマ字(英数半角)で入力してください
+Hellow!kasai
+(6) (p>q) ? (p+1) : (q-5);selection=15(p=10,q=20)
+*/
+
