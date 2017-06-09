@@ -1,0 +1,16 @@
+/** TEST-4 
+(1) mn1=Tokyo-Yokohama : strlen(mn1)=14,strlen(mn3)=10
+(2) mn1=Handam,a[1]=Nagashima : strcmp(mn1,a[1] = -1 
+(3) 名をローマ字(英数半角)で入力してください
+nobuhiro
+Hellow! nobuhiro
+(4) enum: 
+ 動物の番号を選んでください
+0=dog,1=cat,2=cow,3=pig
+2
+**モー**
+(5)
+isalpha($)=0isalpha(V)=1isspace(V)=1isspace( )=0isdigit(f)=2isdigit(7)=0str2=ABCDDEFGHIJK XXX!#$#&XXYYZZPP
+str1=ABCDDEFGHIJK XXX!#$#&XXYYZZPP
+*/
+
