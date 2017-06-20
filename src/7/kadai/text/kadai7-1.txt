@@ -1,0 +1,8 @@
+/*** アルゴリズム2.4 **
+質問の数値xを入力してください(半角)
+0
+left= 0,right=17,mid= 8
+left= 0,right= 7,mid= 3
+left= 0,right= 2,mid= 1
+left= 0,right= 0,mid= 0
+rc=-1 (0: Not Found)

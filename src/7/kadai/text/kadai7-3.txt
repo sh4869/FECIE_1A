@@ -1,0 +1,9 @@
+/*** アルゴリズム2.4 **
+質問の数値xを入力してください(半角)
+24
+left=0,right=17,mid=8
+left=9,right=17,mid=13
+left=9,right=12,mid=10
+left=11,right=12,mid=11
+left=12,right=12,mid=12
+rc=12 (x=24, s[12] = 24)

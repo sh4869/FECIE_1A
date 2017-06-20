@@ -1,0 +1,16 @@
+/** Test - 6 ** 
+step1: cellingP(4.000100)=5
+step2: 
+please input: x,m
+30 7
+n=21, m=7,k=3
+trace: 6 11 17 23 27 32 29 30 
+rc = 16 (s[16]=30)
+please input: x,m
+34 6
+n=21, m=6,k=3
+trace: 6 11 17 23 27 29 30 
+rc = -1 (34 Not Found)
+please input: x,m
+*/
+

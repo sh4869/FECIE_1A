@@ -1,0 +1,1 @@
+値が存在しない場合、leftにもrightにもmidが代入されてしまい結果としてright==midとなってしまう。しかし、x!=s[mid]であり、かつleft<=right(because. left == right == mid)なのでwhile上の条件は変わらず、無限ループが発生してしまう。
