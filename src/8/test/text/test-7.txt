@@ -1,0 +1,33 @@
+/** 空欄を埋めなさい 
+step-1 
+質問の数値xを入力してください (半角)
+left = 00, right = 14, mid = 7
+left = 08, right = 14, mid = 11
+left = 08, right = 10, mid = 9
+left = 10, right = 10, mid = 10
+left=10,right=09,mid=10
+rc = 9 (x = 23 s1[9] = 23) 
+step1
+htb[12]=12
+htb[20]=43
+htb[14]=14
+htb[10]=33
+htb[16]=16
+htb[19]=19
+htb[22]=22
+htb[ 0]=23
+htb[ 2]=25
+htb[ 4]= 2
+htb[ 5]= 5
+htb[ 6]= 6
+htb[18]=10
+htb[ 7]=28
+htb[13]=36
+
+step-2A: x=28を探索
+rc = 28 (x = 07 s1[19] = 23) 
+
+step-2B: x=42を探索
+rc = -1 (0 Not Found)
+*/
+

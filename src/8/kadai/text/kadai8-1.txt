@@ -1,0 +1,17 @@
+/*** Program 3.1-3.2 **
+sizeof(LIST)=16
+input integers (example 10 20 30 -1( -1 end of input))
+Program 3.1(insert to the top)
+print out from the head(head = 00000000007A2490)
+p=00000000007A2490(p->data=40,p->next=00000000007A2470)
+p=00000000007A2470(p->data=30,p->next=00000000007A2450)
+p=00000000007A2450(p->data=20,p->next=00000000007A2430)
+p=00000000007A2430(p->data=10,p->next=0000000000000000)
+Program 3.2(insert to the tail)
+print out from the head(head = 00000000007A24B0)
+p=00000000007A24B0(p->data=10,p->next=00000000007A24D0)
+p=00000000007A24D0(p->data=20,p->next=00000000007A24F0)
+p=00000000007A24F0(p->data=30,p->next=00000000007A2510)
+p=00000000007A2510(p->data=40,p->next=0000000000000000)
+*/
+
