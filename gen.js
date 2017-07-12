@@ -2,7 +2,7 @@ const glob = require("glob");
 const fs = require("fs");
 
 // write Report 
-const writeReport = (source,dir) => {
+const writeReport = (number,source,dir) => {
     const title = source.split("/").slice(-1)[0].replace(".c","");
     const code = fs.readFileSync(source, "utf-8");
     let text;
@@ -12,20 +12,15 @@ const writeReport = (source,dir) => {
         text = "";
     }
     const str = `
-# ${title}
-
-## ソースコード
-
-\`\`\`c
+# ${title}\r\n\r\n
+## ソースコード\r\n\r\n
+\`\`\`c\r\n
 ${code}
-\`\`\`
-
-## 出力
-
-\`\`\`
-${text}
-\`\`\`
-
+\`\`\`\r\n
+## 出力\r\n\r\n
+\`\`\`\r\n
+${text}\r\n
+\`\`\`\r\n
 `;
     return str;
 }
@@ -40,12 +35,12 @@ const test_sources = glob.sync(`src/${number}/test/*.c`);
 let kadaireport = "";
 let testreport = "";
 kadai_sources.forEach((value) => {
-    kadaireport += writeReport(value,"kadai");
+    kadaireport += writeReport(number,value,"kadai");
 });
 
 test_sources.forEach((value) => {
-    testreport += writeReport(value,"test");
+    testreport += writeReport(number,value,"test");
 });
 
-fs.writeFileSync(`src/${number}/kadai/kadai${date}-16030.txt`);
-fs.writeFileSync(`src/${number}/test/test${date}-16030.txt`);
+fs.writeFileSync(`src/${number}/kadai/kadai${date}-16030.txt`,kadaireport);
+fs.writeFileSync(`src/${number}/test/test${date}-16030.txt`,testreport);
