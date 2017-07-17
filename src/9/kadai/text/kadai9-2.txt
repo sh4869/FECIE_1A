@@ -1,0 +1,10 @@
+/*** Program 3.9-3.10 **
+(Enqueue) 10 Qhead=0,Qtail=1
+(Enqueue) 20 Qhead=0,Qtail=2
+(Enqueue) 30 Qhead=0,Qtail=3
+(Dequeue) 10 Qhead=1,Qtail=3
+(Dequeue) 20 Qhead=2,Qtail=3
+(Enqueue) 40 Qhead=2,Qtail=4
+(Dequeue) 30 Qhead=3,Qtail=4
+*/
+

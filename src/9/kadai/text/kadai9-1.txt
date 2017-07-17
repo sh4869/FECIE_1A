@@ -1,0 +1,8 @@
+/*** プログラム3.8 **
+stack[0]=13stack[1]=25stack[2]=41
+stack[2]=41
+stack[1]=25
+stack[0]=13
+Error Underflow
+*/
+

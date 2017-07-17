@@ -1,0 +1,36 @@
+/*** 第三章 演習問題 問1**
+(case-1) 先頭に追加(push),先頭から取り出し(pop)
+print out from the head(head = 0000000000AE2490)
+p=0000000000AE2490(p->data=400,p->next=0000000000AE2470)
+p=0000000000AE2470(p->data=300,p->next=0000000000AE2450)
+p=0000000000AE2450(p->data=200,p->next=0000000000AE2430)
+p=0000000000AE2430(p->data=100,p->next=0000000000000000)
+print out from the head(head = 0000000000AE2450)
+p=0000000000AE2450(p->data=200,p->next=0000000000AE2430)
+p=0000000000AE2430(p->data=100,p->next=0000000000000000)
+printlist : list end(head = 0000000000000000)
+print out from the head(head = 0000000000000000)
+
+(case-2) 先頭に追加 末尾から取り出し
+print out from the head(head = 0000000000AE2490)
+p=0000000000AE2490(p->data=400,p->next=0000000000AE2470)
+p=0000000000AE2470(p->data=300,p->next=0000000000AE2450)
+p=0000000000AE2450(p->data=200,p->next=0000000000AE2430)
+p=0000000000AE2430(p->data=100,p->next=0000000000000000)
+x=100 (head =0000000000AE2490) (freed 0000000000AE2430)
+x=200 (head =0000000000AE2490) (freed 0000000000AE2450)
+print out from the head(head = 0000000000AE2490)
+p=0000000000AE2490(p->data=400,p->next=0000000000AE2470)
+p=0000000000AE2470(p->data=300,p->next=0000000000000000)
+
+(case-3) 末尾に追加(Enqueue), 先頭から取り出し(Dequeue)
+print out from the head(head = 0000000000AE2430)
+p=0000000000AE2430(p->data=100,p->next=0000000000AE2450)
+p=0000000000AE2450(p->data=200,p->next=0000000000AE24B0)
+p=0000000000AE24B0(p->data=300,p->next=0000000000000000)
+print out from the head(head = 0000000000AE24B0)
+p=0000000000AE24B0(p->data=300,p->next=0000000000000000)
+printlist : list end(head = 0000000000000000)
+print out from the head(head = 0000000000000000)
+*/
+

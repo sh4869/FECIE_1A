@@ -1,0 +1,20 @@
+/** 第三章-演習問題 問4(キュー) **
+p=0000000000A323D0 Enqueue x = 100
+p=0000000000A323F0 Enqueue x = 200
+p=0000000000A32410 Enqueue x = 300
+print out from the head (head = 0000000000A323D0)
+p=0000000000A323D0,(p->data=100,p->next=0000000000A323F0)
+p=0000000000A323F0,(p->data=200,p->next=0000000000A32410)
+p=0000000000A32410,(p->data=300,p->next=0000000000000000)
+p1=0000000000A323D0 freed: Dequeue_list()=100
+p1=0000000000A323F0 freed: Dequeue_list()=200
+print out from the head (head = 0000000000A32410)
+p=0000000000A32410,(p->data=300,p->next=0000000000000000)
+p=0000000000A323D0 Enqueue x = 5000
+p1=0000000000A32410 freed: Dequeue_list()=300
+p1=0000000000A323D0 freed: Dequeue_list()=5000
+printlist: list end (head = 0000000000000000)
+print out from the head (head = 0000000000000000)
+Dequeue-error: Underflow
+Dequeue_list()=-1
+*/

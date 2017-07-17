@@ -1,0 +1,13 @@
+/*
+kamoku=English
+Yamazaki 77
+Saitou 59
+Tanaka 67
+kamoku=Mathematics
+Yamazaki 88
+Tanaka 80
+kamoku=Programming
+Yamazaki 90
+Saitou 98
+*/
+

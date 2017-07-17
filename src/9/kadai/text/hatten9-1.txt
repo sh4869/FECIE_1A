@@ -1,0 +1,11 @@
+/*** プログラム3.11-12 **
+Enqueue 10 (head=0,tail=1)
+Enqueue 20 (head=0,tail=2)
+Enqueue 30 (head=0,tail=3)
+ (head=1,tail=3) Dequeue1: 10
+Enqueue 40 (head=1,tail=0)
+ (head=2,tail=0) Dequeue2: 20
+Enqueue 50 (head=2,tail=1)
+Error: Overflow
+*/
+
