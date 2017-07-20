@@ -1,0 +1,25 @@
+
+--start --
+input additional data (0 => end, Negative => DeleteMax) :(add 10) - 
+heap(n = 01) 10 
+input additional data (0 => end, Negative => DeleteMax) :(add 20) - heap[2]=20  <-> heap[1]=10 
+heap(n = 02) 20 10 
+input additional data (0 => end, Negative => DeleteMax) :(add 30) - heap[3]=30  <-> heap[1]=20 
+heap(n = 03) 30 10 20 
+input additional data (0 => end, Negative => DeleteMax) :(add 49) - heap[4]=49  <-> heap[2]=10 heap[2]=10  <-> heap[1]=30 
+heap(n = 04) 49 30 20 10 
+input additional data (0 => end, Negative => DeleteMax) :(add 10) - 
+heap(n = 05) 49 30 20 10 10 
+input additional data (0 => end, Negative => DeleteMax) :(add 123) - heap[6]=123  <-> heap[3]=20 heap[3]=20  <-> heap[1]=49 
+heap(n = 06) 123 30 49 10 10 20 
+input additional data (0 => end, Negative => DeleteMax) :(add 12) - 
+heap(n = 07) 123 30 49 10 10 20 12 
+input additional data (0 => end, Negative => DeleteMax) :(add 43) - heap[8]=43  <-> heap[4]=10 heap[4]=10  <-> heap[2]=30 
+heap(n = 08) 123 43 49 30 10 20 12 10 
+input additional data (0 => end, Negative => DeleteMax) :(add 50) - heap[9]=50  <-> heap[4]=30 heap[4]=30  <-> heap[2]=43 
+heap(n = 09) 123 50 49 43 10 20 12 10 30 
+input additional data (0 => end, Negative => DeleteMax) :(add 1320) - heap[10]=1320  <-> heap[5]=10 heap[5]=10  <-> heap[2]=50 heap[2]=50  <-> heap[1]=123 
+heap(n = 10) 1320 123 49 43 50 20 12 10 30 10 
+input additional data (0 => end, Negative => DeleteMax) :Delete 1320 - heap[1]=10 <-> heap[2]=123 heap[2]=10 <-> heap[5]=50 input additional data (0 => end, Negative => DeleteMax) :Delete 123 - heap[1]=30 <-> heap[2]=50 heap[2]=30 <-> heap[4]=43 input additional data (0 => end, Negative => DeleteMax) :Delete 50 - heap[1]=10 <-> heap[3]=49 heap[3]=10 <-> heap[6]=20 input additional data (0 => end, Negative => DeleteMax) :(add 12) - 
+heap(n = 08) 49 43 20 30 10 10 12 12 
+input additional data (0 => end, Negative => DeleteMax) :Delete 49 - heap[1]=12 <-> heap[2]=43 heap[2]=12 <-> heap[4]=30 input additional data (0 => end, Negative => DeleteMax) :Delete 43 - heap[1]=12 <-> heap[2]=30 input additional data (0 => end, Negative => DeleteMax) :

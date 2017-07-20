@@ -1,0 +1,22 @@
+/** 第三章 - 演習問題 問2(スタック)**
+sizeof(LIST)=16
+p=0000000000022430,push x=100
+p=0000000000022450,push x=200
+p=0000000000022470,push x=300
+print out from the head(head = 0000000000022470)
+p=0000000000022470(p->data=300,p->next=0000000000022450)
+p=0000000000022450(p->data=200,p->next=0000000000022430)
+p=0000000000022430(p->data=100,p->next=0000000000000000)
+p=0000000000022470, freed: pop_list(&head)=300
+p=0000000000022450, freed: pop_list(&head)=200
+print out from the head(head = 0000000000022430)
+p=0000000000022430(p->data=100,p->next=0000000000000000)
+p=0000000000022450,push x=500
+p=0000000000022450, freed: pop_list(&head)=500
+p=0000000000022430, freed: pop_list(&head)=100
+printlist : list end(head = 0000000000000000)
+print out from the head(head = 0000000000000000)
+POP-error: Underflow
+pop_list(&head)=-1
+*/
+

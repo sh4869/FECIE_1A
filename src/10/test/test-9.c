@@ -1,0 +1,125 @@
+#include <stdio.h>
+#include <malloc.h>
+
+#define STACKSIZE 4
+
+typedef struct LIST {
+  int data;
+  struct LIST *next;
+} LIST;
+
+static int stack[STACKSIZE];
+static int S_top;
+static LIST *head,*tail;
+void printstack(int *);
+void printlist(LIST *);
+void add(int x){
+  LIST *p1,*p2;
+  p2 = (LIST *)(malloc(sizeof(LIST)));
+  p2->next = NULL;
+  p2->data = x;
+  if(head == NULL) {
+    head = p2;
+  } else {
+    p1 = head;
+    while(p1->next != NULL) p1 = p1->next;
+    p1->next = p2;
+  }
+}
+
+int take(){
+  LIST *p;
+  int x;
+  if(head == NULL){
+    printf("Error: Underflow(take top)\n");
+    return -1;
+  }
+  p = head;
+  x = p->data;
+  head = p->next;
+  free(p);
+  return x;
+}
+
+void push(int x){
+  if(S_top == STACKSIZE){
+    printf("Error:Overflow\n");
+    return;
+  } else {
+    stack[S_top++] = x;
+  }
+}
+
+int pop(void){
+  if(S_top == 0){
+    printf("Error:Underflow\n");
+    return -1;
+  }
+  return stack[--S_top];
+}
+
+int main(void){
+  int data,i;
+  printf("/*(case1)\n");
+  printf("sizeof(LIST)=%d\n",sizeof(LIST));
+  S_top = 0;
+  push(500);
+  push(200);
+  push(300);
+  data = pop();
+  if(data>0){
+    printf("stack=[%d]=%d\n",S_top,data);
+  }
+  push(400);
+  printstack(stack);
+  for(i=0;i<4;i++){
+    data = pop();
+    if(data>0){
+      printf("stack=[%d]=%d\n",S_top,data);
+    }
+  }
+
+  printf("\n(case2)\n");
+  head = tail = NULL;
+  add(200);
+  add(400);
+  add(300);
+  add(100);
+  printlist(head);
+  printf("\n");
+  take();
+  take();
+  printlist(head);
+  take();
+  printlist(head);
+  printf("\n");
+  take();
+  printlist(head);
+  printf("*/\n");
+}
+
+void printstack(int *stack){
+  int i = 0;
+  while(i<S_top){
+    printf("stack[%d] = %d ",i,stack[i]);
+    i++;
+  }
+  printf("\n");
+}
+
+void printlist(LIST *head){
+  LIST *p;
+  p = head;
+  if(p==NULL) {
+    printf("printlist list end(head = %p)\n",p);
+  }
+  printf("print out from the head(head = %p)\n",head);
+  while(p!=NULL){
+    printf("p=%p,(p->data=%d,p->next=%p)\n",p,p->data,p->next);
+    if(p->next != NULL){
+      p=p->next;
+    } else {
+      break;
+    }
+  }
+}

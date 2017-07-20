@@ -1,0 +1,26 @@
+/*(case1)
+sizeof(LIST)=16
+stack=[2]=300
+stack[0] = 500 stack[1] = 200 stack[2] = 400 
+stack=[2]=400
+stack=[1]=200
+stack=[0]=500
+Error:Underflow
+
+(case2)
+print out from the head(head = 00000000001B2430)
+p=00000000001B2430,(p->data=200,p->next=00000000001B2450)
+p=00000000001B2450,(p->data=400,p->next=00000000001B2470)
+p=00000000001B2470,(p->data=300,p->next=00000000001B2490)
+p=00000000001B2490,(p->data=100,p->next=0000000000000000)
+
+print out from the head(head = 00000000001B2470)
+p=00000000001B2470,(p->data=300,p->next=00000000001B2490)
+p=00000000001B2490,(p->data=100,p->next=0000000000000000)
+print out from the head(head = 00000000001B2490)
+p=00000000001B2490,(p->data=100,p->next=0000000000000000)
+
+printlist list end(head = 0000000000000000)
+print out from the head(head = 0000000000000000)
+*/
+

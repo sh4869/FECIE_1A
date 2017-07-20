@@ -1,0 +1,36 @@
+/*** Program 3.13 **
+--start --
+(add  9) - 
+heap(n = 01)  9 
+(add  5) - 
+heap(n = 02)  9  5 
+(add 13) - heap[3]=13  <-> heap[1]=9 
+heap(n = 03) 13  5  9 
+(add 32) - heap[4]=32  <-> heap[2]=5 heap[2]=5  <-> heap[1]=13 
+heap(n = 04) 32 13  9  5 
+(add 29) - heap[5]=29  <-> heap[2]=13 
+heap(n = 05) 32 29  9  5 13 
+(add 18) - heap[6]=18  <-> heap[3]=9 
+heap(n = 06) 32 29 18  5 13  9 
+(add 72) - heap[7]=72  <-> heap[3]=18 heap[3]=18  <-> heap[1]=32 
+heap(n = 07) 72 29 32  5 13  9 18 
+(add 35) - heap[8]=35  <-> heap[4]=5 heap[4]=5  <-> heap[2]=29 
+heap(n = 08) 72 35 32 29 13  9 18  5 
+(add 47) - heap[9]=47  <-> heap[4]=29 heap[4]=29  <-> heap[2]=35 
+heap(n = 09) 72 47 32 35 13  9 18  5 29 
+input additional data (0 => end) :(add 10) - 
+heap(n = 10) 72 47 32 35 13  9 18  5 29 10 
+input additional data (0 => end) :(add 20) - heap[11]=20  <-> heap[5]=13 
+heap(n = 11) 72 47 32 35 20  9 18  5 29 10 13 
+input additional data (0 => end) :(add 30) - heap[12]=30  <-> heap[6]=9 
+heap(n = 12) 72 47 32 35 20 30 18  5 29 10 13  9 
+input additional data (0 => end) :(add 33) - heap[13]=33  <-> heap[6]=30 heap[6]=30  <-> heap[3]=32 
+heap(n = 13) 72 47 33 35 20 32 18  5 29 10 13  9 30 
+input additional data (0 => end) :(add 40) - heap[14]=40  <-> heap[7]=18 heap[7]=18  <-> heap[3]=33 
+heap(n = 14) 72 47 40 35 20 32 33  5 29 10 13  9 30 18 
+input additional data (0 => end) :(add 50) - heap[15]=50  <-> heap[7]=33 heap[7]=33  <-> heap[3]=40 
+heap(n = 15) 72 47 50 35 20 32 40  5 29 10 13  9 30 18 33 
+input additional data (0 => end) :(add 20) - heap[16]=20  <-> heap[8]=5 
+heap(n = 16) 72 47 50 35 20 32 40 20 29 10 13  9 30 18 33  5 
+input additional data (0 => end) :*/
+
