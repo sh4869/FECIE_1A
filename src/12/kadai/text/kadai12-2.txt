@@ -1,0 +1,140 @@
+/** アルゴリズム4.2--準備--1(2分探索木の削除)**
+(** Binary Tree using data[10] **)
+57(0x6ff220) (22(0x6ff240) , 80(0x6ff260))
+22(0x6ff240) (14(0x6ff280) , 34(0x6ff2a0))
+14(0x6ff280) ( 4(0x6ff300) , 17(0x6ff320))
+ 4(0x6ff300) (0((nil)) , 0((nil)))
+17(0x6ff320) (0((nil)) , 0((nil)))
+34(0x6ff2a0) (0((nil)) , 0((nil)))
+80(0x6ff260) (71(0x6ff2c0) , 87(0x6ff2e0))
+71(0x6ff2c0) (59(0x6ff340) , 0((nil)))
+59(0x6ff340) (0((nil)) , 0((nil)))
+87(0x6ff2e0) (0((nil)) , 0((nil)))
+Please input positive intger (0 end)17
+17(0x6ff320): deleted
+Please input positive intger (0 end)71
+71(0x6ff2c0): deleted
+Please input positive intger (0 end)-1
+(head = 0x6ff220)
+57(0x6ff220) (22(0x6ff240) , 80(0x6ff260))
+22(0x6ff240) (14(0x6ff280) , 34(0x6ff2a0))
+14(0x6ff280) ( 4(0x6ff300) , 0((nil)))
+ 4(0x6ff300) (0((nil)) , 0((nil)))
+34(0x6ff2a0) (0((nil)) , 0((nil)))
+80(0x6ff260) (59(0x6ff340) , 87(0x6ff2e0))
+59(0x6ff340) (0((nil)) , 0((nil)))
+87(0x6ff2e0) (0((nil)) , 0((nil)))
+Please input positive intger (0 end)22
+22(0x6ff240): deleted
+Please input positive intger (0 end)-1
+(head = 0x6ff220)
+57(0x6ff220) (14(0x6ff240) , 80(0x6ff260))
+14(0x6ff240) ( 4(0x6ff300) , 34(0x6ff2a0))
+ 4(0x6ff300) (0((nil)) , 0((nil)))
+34(0x6ff2a0) (0((nil)) , 0((nil)))
+80(0x6ff260) (59(0x6ff340) , 87(0x6ff2e0))
+59(0x6ff340) (0((nil)) , 0((nil)))
+87(0x6ff2e0) (0((nil)) , 0((nil)))
+Please input positive intger (0 end)14
+14(0x6ff240): deleted
+Please input positive intger (0 end)80
+80(0x6ff260): deleted
+Please input positive intger (0 end)-1
+(head = 0x6ff220)
+57(0x6ff220) ( 4(0x6ff240) , 59(0x6ff260))
+ 4(0x6ff240) (0((nil)) , 34(0x6ff2a0))
+34(0x6ff2a0) (0((nil)) , 0((nil)))
+59(0x6ff260) (0((nil)) , 87(0x6ff2e0))
+87(0x6ff2e0) (0((nil)) , 0((nil)))
+Please input positive intger (0 end)57
+57(0x6ff220): deleted
+Please input positive intger (0 end)-1
+(head = 0x6ff220)
+34(0x6ff220) ( 4(0x6ff240) , 59(0x6ff260))
+ 4(0x6ff240) (0((nil)) , 0((nil)))
+59(0x6ff260) (0((nil)) , 87(0x6ff2e0))
+87(0x6ff2e0) (0((nil)) , 0((nil)))
+Please input positive intger (0 end)34
+34(0x6ff220): deleted
+Please input positive intger (0 end)-1
+(head = 0x6ff220)
+ 4(0x6ff220) (0((nil)) , 59(0x6ff260))
+59(0x6ff260) (0((nil)) , 87(0x6ff2e0))
+87(0x6ff2e0) (0((nil)) , 0((nil)))
+Please input positive intger (0 end)4
+4(0x6ff220) : deleted
+Please input positive intger (0 end)-1
+(head = 0x6ff260)
+59(0x6ff260) (0((nil)) , 87(0x6ff2e0))
+87(0x6ff2e0) (0((nil)) , 0((nil)))
+Please input positive intger (0 end)87
+87(0x6ff2e0): deleted
+Please input positive intger (0 end)-1
+(head = 0x6ff260)
+59(0x6ff260) (0((nil)) , 0((nil)))
+Please input positive intger (0 end)0
+*/
+
+/** アルゴリズム4.2--準備--1(2分探索木の削除)**                     
+(** Binary Tree using data[16] **)                   
+57(0x755220) (22(0x755240) , 80(0x755260))           
+22(0x755240) (14(0x755280) , 34(0x7552a0))           
+14(0x755280) ( 4(0x755300) , 17(0x755320))           
+ 4(0x755300) (0((nil)) , 0((nil)))                   
+17(0x755320) (0((nil)) , 0((nil)))                   
+34(0x7552a0) (0((nil)) , 0((nil)))                   
+80(0x755260) (71(0x7552c0) , 87(0x7552e0))           
+71(0x7552c0) (59(0x755340) , 74(0x755360))           
+59(0x755340) (0((nil)) , 0((nil)))                   
+74(0x755360) (72(0x755380) , 78(0x7553a0))           
+72(0x755380) (0((nil)) , 0((nil)))                   
+78(0x7553a0) (76(0x7553c0) , 0((nil)))               
+76(0x7553c0) (75(0x7553e0) , 77(0x755400))           
+75(0x7553e0) (0((nil)) , 0((nil)))                   
+77(0x755400) (0((nil)) , 0((nil)))                   
+87(0x7552e0) (0((nil)) , 0((nil)))                   
+Please input positive intger (0 end)80               
+80(0x755260): deleted                                
+Please input positive intger (0 end)-1               
+(head = 0x755220)                                    
+57(0x755220) (22(0x755240) , 78(0x755260))           
+22(0x755240) (14(0x755280) , 34(0x7552a0))           
+14(0x755280) ( 4(0x755300) , 17(0x755320))           
+ 4(0x755300) (0((nil)) , 0((nil)))                   
+17(0x755320) (0((nil)) , 0((nil)))                   
+34(0x7552a0) (0((nil)) , 0((nil)))                   
+78(0x755260) (71(0x7552c0) , 87(0x7552e0))           
+71(0x7552c0) (59(0x755340) , 74(0x755360))           
+59(0x755340) (0((nil)) , 0((nil)))                   
+74(0x755360) (72(0x755380) , 0((nil)))               
+72(0x755380) (0((nil)) , 0((nil)))                   
+87(0x7552e0) (0((nil)) , 0((nil)))                   
+Please input positive intger (0 end)74               
+74(0x755360): deleted                                
+Please input positive intger (0 end)-1               
+(head = 0x755220)                                    
+57(0x755220) (22(0x755240) , 78(0x755260))           
+22(0x755240) (14(0x755280) , 34(0x7552a0))           
+14(0x755280) ( 4(0x755300) , 17(0x755320))           
+ 4(0x755300) (0((nil)) , 0((nil)))                   
+17(0x755320) (0((nil)) , 0((nil)))                   
+34(0x7552a0) (0((nil)) , 0((nil)))                   
+78(0x755260) (71(0x7552c0) , 87(0x7552e0))           
+71(0x7552c0) (59(0x755340) , 0((nil)))               
+59(0x755340) (0((nil)) , 0((nil)))                   
+87(0x7552e0) (0((nil)) , 0((nil)))                   
+Please input positive intger (0 end)22               
+22(0x755240): deleted                                
+Please input positive intger (0 end)-1               
+(head = 0x755220)                                    
+57(0x755220) (17(0x755240) , 78(0x755260))           
+17(0x755240) (14(0x755280) , 34(0x7552a0))           
+14(0x755280) ( 4(0x755300) , 0((nil)))               
+ 4(0x755300) (0((nil)) , 0((nil)))                   
+34(0x7552a0) (0((nil)) , 0((nil)))                   
+78(0x755260) (71(0x7552c0) , 87(0x7552e0))           
+71(0x7552c0) (59(0x755340) , 0((nil)))               
+59(0x755340) (0((nil)) , 0((nil)))                   
+87(0x7552e0) (0((nil)) , 0((nil)))                   
+Please input positive intger (0 end)0                
+*/                                                   

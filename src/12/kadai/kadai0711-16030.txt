@@ -1,0 +1,624 @@
+
+# kadai12-1
+
+
+## ソースコード
+
+
+```c
+
+#include <stdio.h>
+#include "PLIB.h"
+
+#define N 4
+static int data[N] = {57,80,71,87};
+
+int delete1_x(BSTnode **,int);
+int main(void){
+  BSTnode * head;
+  int data2;
+  printf("/** アルゴリズム4.2--準備--1(2分探索木の削除)**\n");
+  binary_tree(&head,data,N);
+  data2 = 57;
+  if(delete1_x(&head,data2) == 0){
+    printf("%d delete\n",data2);
+  }
+  if(head != NULL){
+    printtree(head);
+  }
+  printf("*/\n");
+}
+
+int delete1_x(BSTnode **head,int x){
+  BSTnode *up,*v;
+  up = v = *head;
+  if(*head == NULL) return 2;
+  if(x == v->key){
+    if((v->lson == NULL) && (v->rson == NULL)){
+      *head = NULL;
+      free(v);
+      return 0;
+    } else if((v->lson == NULL) && (v->rson != NULL)){
+      *head = v->rson;
+      free(v);
+      return 0;
+    } else if((v->lson != NULL) && (v->rson == NULL)){
+      *head = v->lson;
+      free(v);
+      return 0;
+    }
+  }
+  return 1;
+}
+
+```
+
+## 出力
+
+
+```
+
+
+
+/** アルゴリズム4.2--準備--1(2分探索木の削除)**
+(** Binary Tree using data[1] **)
+57(0000000000B82430) (0(0000000000000000)) (0(0000000000000000))
+ 57 delete
+*/
+
+/** アルゴリズム4.2--準備--1(2分探索木の削除)**
+(** Binary Tree using data[4] **)
+57(00000000007D2430) (22(00000000007D2450)) (0(0000000000000000))
+ 22(00000000007D2450) (14(00000000007D2470)) (34(00000000007D2490)) 
+14(00000000007D2470) (0(0000000000000000)) (0(0000000000000000))
+ 34(00000000007D2490) (0(0000000000000000)) (0(0000000000000000))
+ 57 delete
+22(00000000007D2450) (14(00000000007D2470)) (34(00000000007D2490)) 
+14(00000000007D2470) (0(0000000000000000)) (0(0000000000000000))
+ 34(00000000007D2490) (0(0000000000000000)) (0(0000000000000000))
+ */
+
+/** アルゴリズム4.2--準備--1(2分探索木の削除)**
+(** Binary Tree using data[4] **)
+57(0000000000C62430) (0(0000000000000000)) (80(0000000000C62450)) 
+80(0000000000C62450) (71(0000000000C62470)) (87(0000000000C62490)) 
+71(0000000000C62470) (0(0000000000000000)) (0(0000000000000000))
+ 87(0000000000C62490) (0(0000000000000000)) (0(0000000000000000))
+ 57 delete
+80(0000000000C62450) (71(0000000000C62470)) (87(0000000000C62490)) 
+71(0000000000C62470) (0(0000000000000000)) (0(0000000000000000))
+ 87(0000000000C62490) (0(0000000000000000)) (0(0000000000000000))
+ */
+
+
+
+```
+
+
+# kadai12-2
+
+
+## ソースコード
+
+
+```c
+
+#include <stdio.h>
+#include "PLIB.h"
+
+#define N 16
+static int data[N] = {57,22,80,14,34,71,87,4,17,59,74,72,78,76,75,77};
+
+// #define N 10
+// static int data[N] = {57,22,80,14,34,71,87,4,17,59};
+
+int delete1(BSTnode **,int);
+int delete2(BSTnode *,BSTnode *,int);
+int main(void){
+  BSTnode * head;
+  int rc,data2;
+  printf("/** アルゴリズム4.2--準備--1(2分探索木の削除)**\n");
+  binary_tree(&head,data,N);
+  while(1){
+    printf("Please input positive intger (0 end)");
+    scanf("%d",&data2);
+    if(data2 == 0){
+      break;
+    }
+    if(data2<0){
+      if(head != NULL){
+        printf("(head = %p)\n",head);
+        printtree(head);
+        continue;
+      }
+    }
+    rc = delete1(&head,data2);
+    if(rc != 0){
+      printf("No delete object(key = %d)\n",data2);
+    }
+  }
+  printf("*/\n");
+}
+
+int delete1(BSTnode **head,int x){
+  BSTnode *up,*v;
+  up = v = *head;
+  if(*head == NULL) return 2;
+  if(x == v->key){
+    if((v->lson == NULL) && (v->rson == NULL)){
+      printf("%d(%p) : deleted\n",x,v);
+      *head = NULL;
+      free(v);
+      return 0;
+    } else if((v->lson == NULL) && (v->rson != NULL)){
+      printf("%d(%p) : deleted\n",x,v);
+      *head = v->rson;
+      free(v);
+      return 0;
+    } else if((v->lson != NULL) && (v->rson == NULL)){
+      printf("%d(%p) : deleted\n",x,v);
+      *head = v->lson;
+      free(v);
+      return 0;
+    }
+  }
+  while(v != NULL){
+    if(x == v->key){
+      printf("%d(%p): deleted\n",x,v);
+      delete2(up,v,x);
+      return 0;
+    }
+    up = v;
+    if(x < v->key){
+      v = v->lson;
+    } else {
+      v = v->rson;
+    }
+  }
+  return 1;
+}
+
+int delete2(BSTnode *up,BSTnode *v,int x){
+  BSTnode *v2,*up2,*t;
+  if((v->lson == NULL) && (v->rson == NULL)){
+    printf("@1\n");
+    if(up->lson == v){
+      up->lson = NULL;
+      free(v);
+      return 0;
+    } else {
+      up->rson = NULL;
+      free(v);
+      return 0;
+    }
+  } else if((v->lson != NULL) && (v->rson == NULL)){
+    printf("@2\n");
+    if(up->lson == v) {
+      up->lson = v->lson;
+    }
+    if(up->rson == v){
+      up->rson = v->rson;
+    }
+    free(v);
+    return 0;
+  } else if((v->lson == NULL) && (v->rson != NULL)){
+    printf("@3\n");
+    if(up->lson == v) {
+      up->lson = v->lson;
+    }
+    if(up->rson == v){
+      up->rson = v->rson;
+    }
+    free(v);
+    return 0;
+  } else {
+    printf("@4\n");
+    if((v->lson)->rson != NULL){
+      up2 = v;
+      v2 = v->lson;
+      while(1){
+        if(v2->rson != NULL){
+          up2 = v2;
+          v2 = v2->rson;
+        } else {
+          v->key = v2->key;
+          up2->rson = NULL;
+          free(v2);
+          break;
+        }
+      }
+    } else {
+      printf("@5\n");
+      t = v->lson;
+      v->key = t->key;
+      v->lson = (v->lson)->lson;
+      free(t);
+      return 0;
+    }
+  }
+}
+
+```
+
+## 出力
+
+
+```
+
+/** アルゴリズム4.2--準備--1(2分探索木の削除)**
+(** Binary Tree using data[10] **)
+57(0x6ff220) (22(0x6ff240) , 80(0x6ff260))
+22(0x6ff240) (14(0x6ff280) , 34(0x6ff2a0))
+14(0x6ff280) ( 4(0x6ff300) , 17(0x6ff320))
+ 4(0x6ff300) (0((nil)) , 0((nil)))
+17(0x6ff320) (0((nil)) , 0((nil)))
+34(0x6ff2a0) (0((nil)) , 0((nil)))
+80(0x6ff260) (71(0x6ff2c0) , 87(0x6ff2e0))
+71(0x6ff2c0) (59(0x6ff340) , 0((nil)))
+59(0x6ff340) (0((nil)) , 0((nil)))
+87(0x6ff2e0) (0((nil)) , 0((nil)))
+Please input positive intger (0 end)17
+17(0x6ff320): deleted
+Please input positive intger (0 end)71
+71(0x6ff2c0): deleted
+Please input positive intger (0 end)-1
+(head = 0x6ff220)
+57(0x6ff220) (22(0x6ff240) , 80(0x6ff260))
+22(0x6ff240) (14(0x6ff280) , 34(0x6ff2a0))
+14(0x6ff280) ( 4(0x6ff300) , 0((nil)))
+ 4(0x6ff300) (0((nil)) , 0((nil)))
+34(0x6ff2a0) (0((nil)) , 0((nil)))
+80(0x6ff260) (59(0x6ff340) , 87(0x6ff2e0))
+59(0x6ff340) (0((nil)) , 0((nil)))
+87(0x6ff2e0) (0((nil)) , 0((nil)))
+Please input positive intger (0 end)22
+22(0x6ff240): deleted
+Please input positive intger (0 end)-1
+(head = 0x6ff220)
+57(0x6ff220) (14(0x6ff240) , 80(0x6ff260))
+14(0x6ff240) ( 4(0x6ff300) , 34(0x6ff2a0))
+ 4(0x6ff300) (0((nil)) , 0((nil)))
+34(0x6ff2a0) (0((nil)) , 0((nil)))
+80(0x6ff260) (59(0x6ff340) , 87(0x6ff2e0))
+59(0x6ff340) (0((nil)) , 0((nil)))
+87(0x6ff2e0) (0((nil)) , 0((nil)))
+Please input positive intger (0 end)14
+14(0x6ff240): deleted
+Please input positive intger (0 end)80
+80(0x6ff260): deleted
+Please input positive intger (0 end)-1
+(head = 0x6ff220)
+57(0x6ff220) ( 4(0x6ff240) , 59(0x6ff260))
+ 4(0x6ff240) (0((nil)) , 34(0x6ff2a0))
+34(0x6ff2a0) (0((nil)) , 0((nil)))
+59(0x6ff260) (0((nil)) , 87(0x6ff2e0))
+87(0x6ff2e0) (0((nil)) , 0((nil)))
+Please input positive intger (0 end)57
+57(0x6ff220): deleted
+Please input positive intger (0 end)-1
+(head = 0x6ff220)
+34(0x6ff220) ( 4(0x6ff240) , 59(0x6ff260))
+ 4(0x6ff240) (0((nil)) , 0((nil)))
+59(0x6ff260) (0((nil)) , 87(0x6ff2e0))
+87(0x6ff2e0) (0((nil)) , 0((nil)))
+Please input positive intger (0 end)34
+34(0x6ff220): deleted
+Please input positive intger (0 end)-1
+(head = 0x6ff220)
+ 4(0x6ff220) (0((nil)) , 59(0x6ff260))
+59(0x6ff260) (0((nil)) , 87(0x6ff2e0))
+87(0x6ff2e0) (0((nil)) , 0((nil)))
+Please input positive intger (0 end)4
+4(0x6ff220) : deleted
+Please input positive intger (0 end)-1
+(head = 0x6ff260)
+59(0x6ff260) (0((nil)) , 87(0x6ff2e0))
+87(0x6ff2e0) (0((nil)) , 0((nil)))
+Please input positive intger (0 end)87
+87(0x6ff2e0): deleted
+Please input positive intger (0 end)-1
+(head = 0x6ff260)
+59(0x6ff260) (0((nil)) , 0((nil)))
+Please input positive intger (0 end)0
+*/
+
+/** アルゴリズム4.2--準備--1(2分探索木の削除)**                     
+(** Binary Tree using data[16] **)                   
+57(0x755220) (22(0x755240) , 80(0x755260))           
+22(0x755240) (14(0x755280) , 34(0x7552a0))           
+14(0x755280) ( 4(0x755300) , 17(0x755320))           
+ 4(0x755300) (0((nil)) , 0((nil)))                   
+17(0x755320) (0((nil)) , 0((nil)))                   
+34(0x7552a0) (0((nil)) , 0((nil)))                   
+80(0x755260) (71(0x7552c0) , 87(0x7552e0))           
+71(0x7552c0) (59(0x755340) , 74(0x755360))           
+59(0x755340) (0((nil)) , 0((nil)))                   
+74(0x755360) (72(0x755380) , 78(0x7553a0))           
+72(0x755380) (0((nil)) , 0((nil)))                   
+78(0x7553a0) (76(0x7553c0) , 0((nil)))               
+76(0x7553c0) (75(0x7553e0) , 77(0x755400))           
+75(0x7553e0) (0((nil)) , 0((nil)))                   
+77(0x755400) (0((nil)) , 0((nil)))                   
+87(0x7552e0) (0((nil)) , 0((nil)))                   
+Please input positive intger (0 end)80               
+80(0x755260): deleted                                
+Please input positive intger (0 end)-1               
+(head = 0x755220)                                    
+57(0x755220) (22(0x755240) , 78(0x755260))           
+22(0x755240) (14(0x755280) , 34(0x7552a0))           
+14(0x755280) ( 4(0x755300) , 17(0x755320))           
+ 4(0x755300) (0((nil)) , 0((nil)))                   
+17(0x755320) (0((nil)) , 0((nil)))                   
+34(0x7552a0) (0((nil)) , 0((nil)))                   
+78(0x755260) (71(0x7552c0) , 87(0x7552e0))           
+71(0x7552c0) (59(0x755340) , 74(0x755360))           
+59(0x755340) (0((nil)) , 0((nil)))                   
+74(0x755360) (72(0x755380) , 0((nil)))               
+72(0x755380) (0((nil)) , 0((nil)))                   
+87(0x7552e0) (0((nil)) , 0((nil)))                   
+Please input positive intger (0 end)74               
+74(0x755360): deleted                                
+Please input positive intger (0 end)-1               
+(head = 0x755220)                                    
+57(0x755220) (22(0x755240) , 78(0x755260))           
+22(0x755240) (14(0x755280) , 34(0x7552a0))           
+14(0x755280) ( 4(0x755300) , 17(0x755320))           
+ 4(0x755300) (0((nil)) , 0((nil)))                   
+17(0x755320) (0((nil)) , 0((nil)))                   
+34(0x7552a0) (0((nil)) , 0((nil)))                   
+78(0x755260) (71(0x7552c0) , 87(0x7552e0))           
+71(0x7552c0) (59(0x755340) , 0((nil)))               
+59(0x755340) (0((nil)) , 0((nil)))                   
+87(0x7552e0) (0((nil)) , 0((nil)))                   
+Please input positive intger (0 end)22               
+22(0x755240): deleted                                
+Please input positive intger (0 end)-1               
+(head = 0x755220)                                    
+57(0x755220) (17(0x755240) , 78(0x755260))           
+17(0x755240) (14(0x755280) , 34(0x7552a0))           
+14(0x755280) ( 4(0x755300) , 0((nil)))               
+ 4(0x755300) (0((nil)) , 0((nil)))                   
+34(0x7552a0) (0((nil)) , 0((nil)))                   
+78(0x755260) (71(0x7552c0) , 87(0x7552e0))           
+71(0x7552c0) (59(0x755340) , 0((nil)))               
+59(0x755340) (0((nil)) , 0((nil)))                   
+87(0x7552e0) (0((nil)) , 0((nil)))                   
+Please input positive intger (0 end)0                
+*/                                                   
+
+
+```
+
+
+# kadai12-3
+
+
+## ソースコード
+
+
+```c
+
+#include <stdio.h>
+#include "PLIB.h"
+
+#define N 12
+static int data[N]={57,60,70,65,90,62,80,98,75,84,88,86};
+// #define N 8
+// static int data[N]={57,22,60,14,34,30,45,4};
+#define PATH_MAXN 10
+int front1(BSTnode *,int,int *);
+int front2(BSTnode *,int,int *);
+BSTnode *path[PATH_MAXN];
+int depth;
+int main(void){
+  BSTnode *head;
+  int data2,rc,frontkey;
+  printf("/*** 4章 4.2-6 直前キーの探索(P.69) **\n");
+  binary_tree(&head,data,N);
+  while(1){
+    printf("正整数を入力してください(0は資料) ");
+    scanf("%d",&data2);
+    if(data2==0) break;
+    if(data2<0){
+      printtree(head);
+      continue;
+    }
+    rc = front1(head,data2,&frontkey);
+    if(rc==0){
+      printf("キー%dの直前のキーは%dです\n",data2,frontkey);
+    } else {
+      printf("\nキー(key=%d)の直前キー無し(またはキー%dは存在しない)\n",data2,data2);
+    }
+  }
+}
+
+int front1(BSTnode *head,int in_key,int *frontkey){
+  int answer,rc;
+  BSTnode * v;
+  depth = -1;
+  v = head;
+  if(head == NULL) return 2;
+  while(v != NULL){
+    path[++depth] = v;
+    printf("path[%d]=%p ",depth,path[depth]);
+    if(in_key == v->key){
+      rc = front2(v,in_key,&answer);
+      if(rc == 0){
+        *frontkey = answer;
+        return 0;
+      } else {
+        return -1;
+      }
+    }
+    if(in_key < v->key) {
+      v = v->lson;
+    } else {
+      v = v->rson;
+    }
+  }
+}
+
+int front2(BSTnode *v,int in_key,int *answer){
+  BSTnode *p,*up2,*v2;
+  if((v->lson == NULL) && (depth == 0)){
+    printf("\n(case-1) key=%d(%p) ",v->key,v);
+    return 1;
+  }
+  if((v->lson == NULL) && (depth > 0)){
+    if(path[depth - 1]->rson == path[depth]){
+      p = path[depth - 1];
+      *answer = p->key;
+      printf("\n(case-2-1) key=%d(%p) ",p->key,p);
+      return 0;
+    } else {
+      depth--;
+      p = path[depth];
+      while(p->rson != path[depth+1]){
+        if(depth>0) {
+          depth--;
+        } else {
+          return 1;
+        }
+        p = path[depth];
+      }
+      *answer = p->key;
+      printf("\n(case-2-2)key=%d(%p) ",p->key,p);
+      return 0;
+    }
+  }
+  if((v->lson!=NULL) && (v->lson->rson == NULL)){
+    p = path[depth]->lson;
+    *answer = p->key;
+    printf("\n(case-3),key=%d(%p) ",p->key,p);
+    return 0;
+  }
+  if((v->lson != NULL) && (v->lson->rson != NULL)){
+    up2 = path[depth];
+    v2 = up2->lson;
+    while(1){
+      if(v2->lson != NULL){
+        up2 = v2;
+        v2 = up2->lson;
+      } else {
+        break;
+      }
+    }
+    *answer = v2->key;
+    printf("\n(case-4) key=%d(%p) ",v2->key,v2);
+    return 0;
+  }
+  return 1;
+}
+
+```
+
+## 出力
+
+
+```
+
+/*** 4章 4.2-6 直前キーの探索(P.69) **
+(** Binary Tree using data[12] **)
+57(0x60c220) (0((nil)) , 60(0x60c240))
+60(0x60c240) (0((nil)) , 70(0x60c260))
+70(0x60c260) (65(0x60c280) , 90(0x60c2a0))
+65(0x60c280) (62(0x60c2c0) , 0((nil)))
+62(0x60c2c0) (0((nil)) , 0((nil)))
+90(0x60c2a0) (80(0x60c2e0) , 98(0x60c300))
+80(0x60c2e0) (75(0x60c320) , 84(0x60c340))
+75(0x60c320) (0((nil)) , 0((nil)))
+84(0x60c340) (0((nil)) , 88(0x60c360))
+88(0x60c360) (86(0x60c380) , 0((nil)))
+86(0x60c380) (0((nil)) , 0((nil)))
+98(0x60c300) (0((nil)) , 0((nil)))
+正整数を入力してください(0は資料) 57
+path[0]=0x60c220
+(case-1) key=57(0x60c220)
+キー(key=57)の直前キー無し(またはキー57は存在しない)
+正整数を入力してください(0は資料) 60
+path[0]=0x60c220 path[1]=0x60c240
+(case-2-1) key=57(0x60c220) キー60の直前のキーは57です
+正整数を入力してください(0は資料) 65
+path[0]=0x60c220 path[1]=0x60c240 path[2]=0x60c260 path[3]=0x60c280
+(case-3),key=62(0x60c2c0) キー65の直前のキーは62です
+正整数を入力してください(0は資料) 62
+path[0]=0x60c220 path[1]=0x60c240 path[2]=0x60c260 path[3]=0x60c280 path[4]=0x60c2c0
+(case-2-2)key=60(0x60c240) キー62の直前のキーは60です
+正整数を入力してください(0は資料) 0
+*/
+
+
+```
+
+
+# kadai12-4
+
+
+## ソースコード
+
+
+```c
+
+#include <stdio.h>
+#include "PLIB.h"
+#define N 10
+static int data[N] = {57,22,80,14,34,71,87,4,17,59};
+void infix1(BSTnode *);
+void infix2(BSTnode *);
+
+int main(void){
+  BSTnode *head;
+  printf("/*** (P.69) 4章 4.2-7 最大値/最小値の探索 **\n");
+  binary_tree(&head,data,N);
+
+  printf("\n 昇順走査(最小値から)\n ");
+  infix1(head);
+  printf("\n 昇順走査(最大値から)\n ");
+  infix2(head);
+  printf("\n*/\n");
+}
+
+void infix1(BSTnode *p){
+  if(p->lson != 0) infix1(p->lson);
+  printf("%d ",p->key);
+  if(p->rson != 0) infix1(p->rson);
+}
+
+void infix2(BSTnode *p){
+  if(p->rson != 0) infix2(p->rson);
+  printf("%d ",p->key);
+  if(p->lson != 0) infix2(p->lson);
+}
+
+
+
+```
+
+## 出力
+
+
+```
+
+/*** (P.69) 4章 4.2-7 最大値/最小値の探索 **
+(** Binary Tree using data[10] **)
+57(00000000001C2430) (22(00000000001C2450) , 80(00000000001C2470)) 
+22(00000000001C2450) (14(00000000001C2490) , 34(00000000001C24B0)) 
+14(00000000001C2490) ( 4(00000000001C2510) , 17(00000000001C2530)) 
+ 4(00000000001C2510) (0(0000000000000000) , 0(0000000000000000))
+17(00000000001C2530) (0(0000000000000000) , 0(0000000000000000))
+34(00000000001C24B0) (0(0000000000000000) , 0(0000000000000000))
+80(00000000001C2470) (71(00000000001C24D0) , 87(00000000001C24F0)) 
+71(00000000001C24D0) (59(00000000001C2550) , 0(0000000000000000))
+59(00000000001C2550) (0(0000000000000000) , 0(0000000000000000))
+87(00000000001C24F0) (0(0000000000000000) , 0(0000000000000000))
+
+ 昇順走査(最小値から)
+ 4 14 17 22 34 57 59 71 80 87 
+ 昇順走査(最大値から)
+ 87 80 71 59 57 34 22 17 14 4 
+*/
+
+
+
+```
+

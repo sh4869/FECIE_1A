@@ -1,0 +1,70 @@
+#include <stdio.h>
+#include "PLIB.h"
+
+BSTnode *node(int);
+BSTnode *head;
+void rot(int*,int*,int*);
+static int n;
+int insert(BSTnode **,int );
+int main(void){
+  int data,rc;
+  int a = 300,b = 200,c = 100;
+  printf("/*** Test-11 **\n(case-1)\n--start--");
+  head = NULL;
+  while(1){
+    printf("正の整数を入力してください(-1=>print,0=>終了)");
+    scanf("%d",&data);
+    if(data == 0){
+      break;
+    } else if(data < 0){
+      printf("(headの内容=%p)\n",head);
+      printtree(head);
+    } else {
+      rc = insert(&head,data);
+      if(rc == 0){
+        printf("key=%dを追加\n",data);
+      } else {
+        printf("key = %d は存在\n",data);
+      }
+    }
+  }
+  printf("(case-2-1)\n a=%d b=%d,c=%d\n",a,b,c);
+  rot(&a,&b,&c);
+  printf("(case-2-2)\n a=%d b=%d,c=%d\n",a,b,c);
+  printf("*/\n");
+}
+
+int insert(BSTnode **head,int x){
+  BSTnode *v,*up,*nr;
+  if(*head==NULL){
+    *head = node(x);
+    return 0;
+  }
+  v = *head;
+  while(v != NULL){
+    up = v;
+    if(x < v->key){
+      v = v->lson;
+    } else if(x > v->key){
+      v = v->rson;
+    } else {
+      return 1;
+    }
+  }
+  nr = node(x);
+  printf("%2d(%p) ",x,nr);
+  if(x < up->key){
+    up->lson = nr;
+  } else {
+    up->rson = nr;
+  }
+  return 0;
+}
+
+void rot(int *p,int *q,int *r){
+  int t;
+  t = *p;
+  *p = *q;
+  *q = *r;
+  *r = t;
+}
