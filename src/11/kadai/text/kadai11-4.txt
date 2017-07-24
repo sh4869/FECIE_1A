@@ -1,0 +1,14 @@
+/** 準備(ポインタの引数とSWAP)**
+(case-1) swap_err aa=100 bb=200
+
+ Inside swap_err a=200,b=100after  swap_err aa=100 bb=200
+(case-2) swap aa=100 bb=200
+after  swap aa=200 bb=100
+(case-3)
+h1=000000000066FE30,h1->data=1111,h1->x=11.10
+h2=000000000066FE20,h2->data=2222,h2->x=22.20
+after swap_ptr
+h1=000000000066FE20,h1->data=2222,h1->x=22.20
+h2=000000000066FE30,h2->data=1111,h2->x=11.10
+*/
+
